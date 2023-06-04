@@ -7,6 +7,10 @@ const app = express();
 
 const PORT = process.env.PORT || 5000;
 
+app.get('/', (req, res) => {
+    res.send('Wellcome to amazon api')
+});
+
 // TOP RATED MOVIES
 app.get('/movies/topRated', async (req, res) => {
 
