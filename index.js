@@ -5,7 +5,7 @@ const request = require('request')
 
 const app = express();
 
-const port = 5000;
+const PORT = process.env.PORT || 5000;
 
 // TOP RATED MOVIES
 app.get('/movies/topRated', async (req, res) => {
@@ -338,30 +338,8 @@ app.get('/movies/most-watched', async (req, res) => {
 //----------------------------   TV SHOWS   -----------------------------------------------
 
 // POPULAR TV SOWS
-app.get('/movies/most-watched', async (req, res) => {
-    try {
-        let popularSows = [];
-        const html = await new Promise((resolve, reject) => {
-            request(`https://www.imdb.com/chart/boxoffice/`, function (
-                error,
-                response,
-                html
-            ) {
-                if (error) reject(error);
-                else resolve(html);
-            });
-        });
 
-        const $ = cheerio.load(html);
-        
 
-        res.json(mostWatched);
-    } catch (error) {
-        console.log('An error occurred:', error);
-        res.status(500).json({ error: 'An error occurred' });
-    }
-});
-
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
