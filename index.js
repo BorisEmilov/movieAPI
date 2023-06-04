@@ -1,14 +1,17 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const express = require('express');
-const request = require('request')
+const request = require('request');
+const path = require('path');
 
 const app = express();
 
 const PORT = (process.env.PORT || 5000);
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.get('/', (req, res) => {
-    res.send('Wellcome to Movie api')
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // TOP RATED MOVIES
